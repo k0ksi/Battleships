@@ -5,12 +5,12 @@
     var app = angular.module("commonServices");
 
     app.factory("getCompPlayerShipsPosition",
-            ["$resource",
-             getCompPlayerShipsPosition]);
+               ["$resource",
+                getCompPlayerShipsPosition]);
 
     function getCompPlayerShipsPosition($resource) {
 
-        return $resource("/Controllers/BattleshipController/CompPlayerPlaceShips",
+        return $resource("/Battleship/CompPlayerPlaceShips",
             {
                 'update': { method: "POST" }
             });
