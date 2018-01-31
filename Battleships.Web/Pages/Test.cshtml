@@ -4,20 +4,141 @@
 }
 <h2>@ViewData["Title"]</h2>
 
+<div ng-controller="BattleshipController" ng-cloak>
+    
+    <div ng-init="initData()">
+        
+        <div id="preloader" ng-if="showPreloader"></div>
+        
+        <h3 class="centered" ng-if="yourTurnToShoot">Your turn to shoot!!!</h3>
+        <h3 class="centered" ng-if="!yourTurnToShoot">Please wait ... Opponent's turn to shoot</h3>
 
+        <div>
+            <div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div ng-bind="model.firstPlayer.name + '\'s board'"></div>
 
-<div ng-controller="BattleshipController as vm">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>A</th>
+                                    <th>B</th>
+                                    <th>C</th>
+                                    <th>D</th>
+                                    <th>E</th>
+                                    <th>F</th>
+                                    <th>G</th>
+                                    <th>H</th>
+                                    <th>I</th>
+                                    <th>J</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="row in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">
+                                    <td ng-bind="row"></td>
+                                    <td ng-class="getClass(row, col, true)" ng-repeat="col in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-    <div ng-init="vm.initData()">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div ng-bind="model.firstPlayer.name + '\'s firing board'"></div>
 
-        <div ng-model="vm.model.firstPlayer.name"></div>
-        <div>Own board</div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>A</th>
+                                    <th>B</th>
+                                    <th>C</th>
+                                    <th>D</th>
+                                    <th>E</th>
+                                    <th>F</th>
+                                    <th>G</th>
+                                    <th>H</th>
+                                    <th>I</th>
+                                    <th>J</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="row in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">
+                                    <td ng-bind="row"></td>
+                                    <td ng-class="getClass(row, col, false)" class="firing-board-row" ng-repeat="col in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
-        <div ng-repeat=""></div>
+            <div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div ng-bind="'Bot' + '\'s board'"></div>
 
-        <div>Firing board</div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>A</th>
+                                    <th>B</th>
+                                    <th>C</th>
+                                    <th>D</th>
+                                    <th>E</th>
+                                    <th>F</th>
+                                    <th>G</th>
+                                    <th>H</th>
+                                    <th>I</th>
+                                    <th>J</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="row in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">
+                                    <td ng-bind="row"></td>
+                                    <td ng-class="getClassSecond(row, col, true)" ng-repeat="col in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div ng-bind="'Bot' + '\'s firing board'"></div>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>A</th>
+                                    <th>B</th>
+                                    <th>C</th>
+                                    <th>D</th>
+                                    <th>E</th>
+                                    <th>F</th>
+                                    <th>G</th>
+                                    <th>H</th>
+                                    <th>I</th>
+                                    <th>J</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="row in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">
+                                    <td ng-bind="row"></td>
+                                    <td ng-class="getClassSecond(row, col, false)" ng-repeat="col in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 
 </div>
-

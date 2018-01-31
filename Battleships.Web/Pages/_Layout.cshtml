@@ -70,12 +70,19 @@
 
     @RenderSection("Scripts", required: false)
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.8/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.6.8/angular-resource.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.8/angular.min.js"
+            asp-fallback-src="~/lib/angular/angular.min.js">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.6.8/angular-resource.min.js"
+            asp-fallback-src="~/lib/angular/angular-resource.min.js">
+    </script>
+
     <script src="~/app/app.js"></script>
-    <script src="~/app/shared/settings/commonServices.js"></script>
-    <script src="~/app/components/battleship/battleshipService.js"></script>
-    <script src="~/app/components/battleship/battleshipComponent.js"></script>
+    <script src="~/app/shared/settings/common.services.js"></script>
+
+    <script src="~/app/components/battleship/battleship.service.js"></script>
+    <script src="~/app/components/battleship/battleship.component.js"></script>  
 
 </body>
 </html>

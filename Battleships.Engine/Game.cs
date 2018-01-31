@@ -10,11 +10,23 @@ namespace Battleships.Engine
             this.FirstPlayer = new Player("Amy");
             this.SecondPlayer = new Player("Vince");
 
-            this.FirstPlayer.PlaceShips();
-            this.SecondPlayer.PlaceShips();
+            //this.FirstPlayer.PlaceShips();
+            //this.SecondPlayer.PlaceShips();
+            //this.PlayerPlaceShips();
+            //this.ComPlayerPlaceChips();
 
             this.FirstPlayer.OutputBoards();
             this.SecondPlayer.OutputBoards();
+        }
+
+        public void PlayerPlaceShips()
+        {
+            this.FirstPlayer.PlaceShips();
+        }
+
+        public void ComPlayerPlaceChips()
+        {
+            this.SecondPlayer.PlaceShips();
         }
 
         public Player FirstPlayer { get; set; }

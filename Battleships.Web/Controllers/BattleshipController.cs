@@ -10,7 +10,8 @@ namespace Battleships.Web.Controllers
         [HttpPost]
         public IActionResult CompPlayerPlaceShips(Game game)
         {
-            game = new Game();
+            game.PlayerPlaceShips();
+            game.ComPlayerPlaceChips();
 
             return this.Ok(game);
         }
