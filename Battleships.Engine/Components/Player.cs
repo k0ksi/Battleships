@@ -81,6 +81,13 @@ namespace Battleships.Engine.Components
             }
         }
 
+        public Coordinates FireShotWithCoordinates(int row, int col, GameBoard comGameBoard)
+        {
+            var panel = comGameBoard.Panels.At(row, col);
+
+            return panel.Coordinates;
+        }
+
         public Coordinates FireShot()
         {
             var hitNeighbors = this.FiringBoard.GetHitNeighbours();

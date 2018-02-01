@@ -9,44 +9,52 @@
         [
             "$scope",
             "$timeout",
-            "getCompPlayerShipsPosition",
+            "placePlayersShips",
+            "placeShot",
             BattleshipGame
         ]);
 
-    function BattleshipGame($scope, $timeout, getCompPlayerShipsPosition) {
+    function BattleshipGame($scope, $timeout, placePlayersShips, placeShot) {
 
         var occupationTypes = [0, 1, 2, 3, 4, 5];
-
         var hasLoaded = false;
-
         $scope.showPreloader = true;
-
         $scope.respondingClassName = ['', 'ship', 'ship', 'ship', 'hit', 'miss'];
-        
-        $scope.selectedRow = 0;
-
-        $scope.selectedCol = 0;
-
         $scope.yourTurnToShoot = true;
-
         $scope.model = {};
 
         $scope.initData = function () {
 
-            getCompPlayerShipsPosition();
+            placePlayersShips.save({},
+                $scope.model,
+                function (data) {
+                    $scope.model = angular.copy(data);
+
+                    hasLoaded = true;
+                });  
         };
 
         $scope.getClass = getClass;
-
         $scope.getClassSecond = getClassSecond;
+        $scope.placeShot = placePlayerShot;
 
-        getCompPlayerShipsPosition.save({},
-            $scope.model,
-            function (data) {
-                $scope.model = angular.copy(data);
+        function placePlayerShot(row, col) {
 
-                hasLoaded = true;
-            });  
+            $scope.model.selectedRow = row;
+            $scope.model.selectedCol = col;
+            
+            placeShot.save({},
+                JSON.stringify($scope.model),
+                //{
+                //    firstPlayer: $scope.model.firstPlayer,
+                //    secondPlayer: $scope.model.secondPlayer,
+                //    selectedRow: $scope.model.selectedRow,
+                //    selectedCol: $scope.model.selectedCol
+                //},
+                function (data) {
+                    $scope.model = angular.copy(data);
+                });
+        }
 
         function getClass(row, col, isGamingBoard) {
             if (!hasLoaded)

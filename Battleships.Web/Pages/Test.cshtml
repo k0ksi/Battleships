@@ -68,7 +68,7 @@
                             <tbody>
                                 <tr ng-repeat="row in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">
                                     <td ng-bind="row"></td>
-                                    <td ng-class="getClass(row, col, false)" class="firing-board-row" ng-repeat="col in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"></td>
+                                    <td ng-click="placeShot(row, col)" ng-class="getClass(row, col, false)" class="firing-board-row" ng-repeat="col in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"></td>
                                 </tr>
                             </tbody>
                         </table>
